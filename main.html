@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Solar Tuk-Tuk Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f8fa;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                max-height: 500px;
+            }
+        }
+        .bg-primary { background-color: #1664C0; }
+        .text-primary { color: #1664C0; }
+        .bg-secondary { background-color: #3F8EFC; }
+        .text-secondary { color: #3F8EFC; }
+        .border-secondary { border-color: #3F8EFC; }
+        .bg-accent { background-color: #A1E8AF; }
+        .text-accent { color: #A1E8AF; }
+        .bg-highlight { background-color: #F4F68D; }
+        .text-highlight { color: #F4F68D; }
+        .flow-node {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            font-weight: 700;
+            text-align: center;
+        }
+        .flow-arrow {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            color: #3F8EFC;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-primary mb-2">
+                Mission Solar Tuk-Tuk
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700">
+                A Scalable Hybrid Solution for Sustainable Urban Mobility
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-primary mb-3">The Urban Challenge</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    In India, tuk-tuks (auto-rickshaws) are the go-to transport for millions, zipping through crowded streets where larger vehicles can't. Despite their convenience, they suffer from major inefficiencies: they use polluting fuel, contribute to urban emissions, and waste energy.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-red-100 border-l-4 border-red-500 p-6 rounded-r-lg">
+                        <h3 class="text-4xl font-extrabold text-red-700 mb-2">The Problem</h3>
+                        <p class="text-lg text-red-900">High Pollution, Fuel Cost, and Inefficiency.</p>
+                    </div>
+                    <div class="bg-accent border-l-4 border-green-600 p-6 rounded-r-lg">
+                        <h3 class="text-4xl font-extrabold text-green-800 mb-2">The Objective</h3>
+                        <p class="text-lg text-green-900">A solar-hybrid system for minimum cost and virtually infinite runtime.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lg:col-span-1 bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col">
+                <h2 class="text-3xl font-bold text-primary mb-4">Prototype: "Coco"</h2>
+                <p class="text-lg text-gray-600 mb-6 flex-grow">
+                    Our proof-of-concept is "Coco," a miniature four-wheeler demonstrating the hybrid solar-battery system.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <span class="block text-4xl font-black text-secondary">16 cm</span>
+                        <span class="text-lg text-gray-700">Total Length</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-black text-secondary">7 cm</span>
+                        <span class="text-lg text-gray-700">Width / Height</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-black text-secondary">2 cm</span>
+                        <span class="text-lg text-gray-700">Wheel Diameter</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-primary mb-3">System Architecture</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    A modular system designed for efficiency. Power flows from the solar panel to charge the battery, which simultaneously powers the motors (via the L298N driver) and the control logic (via a 5V regulator).
+                </p>
+                <div class="mt-4 flex flex-col items-center space-y-2">
+                    <div class="flow-node bg-highlight text-gray-800">SOLAR PANEL (6V)</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-node bg-accent text-gray-800">CHARGE CONTROLLER (TP4056)</div>
+                    <div class="flow-arrow">&darr;</div>
+                    <div class="flow-node bg-blue-200 text-primary w-48">BATTERY (3.7V / 7.4V)</div>
+                    
+                    <div class="w-full flex justify-center space-x-10 mt-2">
+                        <div class="w-1/3 border-t-4 border-secondary border-dashed"></div>
+                        <div class="w-1/3 border-t-4 border-secondary border-dashed"></div>
+                    </div>
+                    <div class="w-full flex justify-around">
+                        <div class="flow-arrow">&darr;</div>
+                        <div class="flow-arrow">&darr;</div>
+                    </div>
+                    
+                    <div class="w-full flex flex-col md:flex-row justify-around text-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flex-1 flex flex-col items-center space-y-2">
+                            <div class="flow-node bg-gray-200 text-gray-800 w-full md:w-48">5V REGULATOR</div>
+                            <div class="flow-arrow">&darr;</div>
+                            <div class="flow-node bg-gray-200 text-gray-800 w-full md:w-48">ARDUINO + RF RECEIVER</div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center space-y-2">
+                            <div class="flow-node bg-red-200 text-red-800 w-full md:w-48">L298N MOTOR DRIVER</div>
+                            <div class="flow-arrow">&darr;</div>
+                            <div class="flow-node bg-red-200 text-red-800 w-full md:w-48">MOTORS</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-primary mb-3">Engineering for Scale</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    The concept is proven, but can it scale? Based on our calculations, a 10kg prototype is entirely feasible. This chart breaks down the key engineering requirements for a larger, more robust model.
+                </p>
+                <div class="chart-container mt-4">
+                    <canvas id="scalingChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="lg:col-span-1 bg-gray-800 text-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-accent mb-4">Scalable Speed Control</h2>
+                <p class="text-lg text-gray-300 mb-6">
+                    The Arduino control code is built for scaling. Speed for the entire system is managed by a single, easily adjustable variable.
+                </p>
+                <pre class="bg-gray-900 rounded p-4 text-sm md:text-base overflow-x-auto text-white">
+<span class="text-blue-400">int</span> <span class="text-accent">speedLevel</span> = <span class="text-yellow-400">180</span>; <span class="text-gray-500">// (0-255)</span>
+
+<span class="text-blue-400">void</span> <span class="text-yellow-400">moveForward</span>() {
+  <span class="text-purple-400">analogWrite</span>(ENA, <span class="text-accent">speedLevel</span>);
+  <span class="text-purple-400">analogWrite</span>(ENB, <span class="text-accent">speedLevel</span>);
+  <span class="text-gray-500">// ... direction pins ...</span>
+}</pre>
+                <p class="text-lg text-gray-300 mt-6">
+                    This variable can be replaced with a potentiometer, allowing for dynamic, real-time speed adjustment in a full-scale model.
+                </p>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3">
+                <h2 class="text-3xl font-bold text-primary mb-6 text-center">The Formulas for Future Development</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Linear Speed (v)</h3>
+                        <p class="text-2xl font-mono bg-gray-100 p-3 rounded">v = $\pi$ * D * (RPM / 60)</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-700">
+                            <li><span class="font-bold">D:</span> Wheel Diameter (m)</li>
+                            <li><span class="font-bold">RPM:</span> Motor Rotations / Minute</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Required Torque (T)</h3>
+                        <p class="text-2xl font-mono bg-gray-100 p-3 rounded">T = F * r</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-700">
+                            <li><span class="font-bold">F:</span> Force at Wheel Rim (N)</li>
+                            <li><span class="font-bold">r:</span> Wheel Radius (m)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Motor Power (P)</h3>
+                        <p class="text-2xl font-mono bg-gray-100 p-3 rounded">P = T * $\omega$</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-700">
+                            <li><span class="font-bold">T:</span> Torque (N·m)</li>
+                            <li><span class="font-bold">$\omega$:</span> Angular Speed (rad/s)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Electrical Current (I)</h3>
+                        <p class="text-2xl font-mono bg-gray-100 p-3 rounded">I = P / V</p>
+                        <ul class="mt-3 list-disc list-inside text-gray-700">
+                            <li><span class="font-bold">P:</span> Power (Watts)</li>
+                            <li><span class="font-bold">V:</span> Motor Supply Voltage (V)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="md:col-span-2 lg:col-span-3 bg-primary text-white rounded-lg shadow-xl p-8 my-8 text-center">
+                <h2 class="text-3xl font-bold mb-3">A Proven, Scalable Concept</h2>
+                <p class="text-lg text-blue-100 max-w-3xl mx-auto">
+                    This project successfully demonstrates a compact, modular, and renewable approach to urban transport. With a clear scaling path defined by these equations, the next step is a full-scale functional prototype.
+                </p>
+                <p class="mt-6 text-lg font-bold text-accent">
+                    Project by: Shaurya, Suryansh, and Reyansh
+                </p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createScalingChart();
+        });
+
+        function createScalingChart() {
+            const ctx = document.getElementById('scalingChart').getContext('2d');
+            
+            const labels = [
+                'Total Force (N)', 
+                ['Required Motor', 'Torque (N·m)'], 
+                'Wheel Torque (N·m)', 
+                'Est. Power (W)', 
+                ['Est. Current', '@ 12V (A)']
+            ];
+            
+            const data = [15, 0.015, 0.75, 45, 3.75];
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Calculated Value',
+                        data: data,
+                        backgroundColor: [
+                            '#3F8EFC',
+                            '#A1E8AF',
+                            '#87BFFF',
+                            '#F4F68D',
+                            '#1664C0'
+                        ],
+                        borderColor: '#1664C0',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'x',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { 
+                                display: true, 
+                                text: 'Calculated Value' 
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { 
+                            display: false 
+                        },
+                        title: {
+                            display: true,
+                            text: 'Engineering Requirements: 10kg Scaled Prototype',
+                            font: { 
+                                size: 18 
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                        return label.join(' ');
+                                    } else {
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
